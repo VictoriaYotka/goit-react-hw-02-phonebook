@@ -1,6 +1,5 @@
 import { Component } from "react";
 import { nanoid } from 'nanoid'
-// model.id = nanoid() 
 
 import { ContactForm } from "./ContactForm/ContactForm";
 import { Filter } from "./Filter/Filter";
@@ -16,6 +15,7 @@ export class App extends Component {
     ],
     filter: ''
   }
+
   
   handleSubmit = (e) => {
     const form = e.currentTarget;
@@ -34,17 +34,9 @@ export class App extends Component {
     form.reset()
   }
 
-
-
-
   handleChange = (e) => {
-   
-    const value = e.target.value;
-    const name = e.target.name;
-
-    this.setState({
-      [name]: value
-    });
+    const {value} = e.target;
+    this.setState({filter: value});
   }
 
   render () {
@@ -56,8 +48,8 @@ export class App extends Component {
   />
 
   <h2>Contacts</h2>
-  <Filter  />
-  <ContactList contacts={this.state.contacts}/>
+  <Filter  handleChange={this.handleChange}/>
+  <ContactList contacts={this.state.contacts} filter={this.state.filter}/>
 </div>
     )
   }

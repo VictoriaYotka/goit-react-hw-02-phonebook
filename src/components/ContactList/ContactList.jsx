@@ -1,7 +1,9 @@
-export function ContactList({ contacts}) {
+export function ContactList({ contacts, filter }) {
+    const filteredContacts = contacts.filter(({name}) => name.toLowerCase().includes(filter.toLowerCase()));
+
     return (
         <ul>
-            {contacts.map(contact => <li key={contact.id}>{contact.name}</li>)}
+            {filteredContacts.map(contact => <li key={contact.id}>{contact.name}</li>)}
         </ul>
     )
 }
