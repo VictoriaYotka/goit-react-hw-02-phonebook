@@ -27,9 +27,19 @@ export class App extends Component {
       number: form.elements.number.value, 
     };
 
-    this.setState((prevState) => ({
-      contacts: [...prevState.contacts, newContact]
-    }))
+    if(this.state.contacts.find(({name}) => name === newContact.name)) {
+      // console.log(this.state.contacts.find(({name}) => name === newContact.name))
+
+      alert (`${newContact.name} is already in contacts`)
+
+      
+      // form.reset()
+    } else {
+      this.setState((prevState) => ({
+        contacts: [...prevState.contacts, newContact]
+      }))
+      
+    }
 
     form.reset()
   }

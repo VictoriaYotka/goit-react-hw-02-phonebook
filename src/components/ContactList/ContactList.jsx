@@ -3,7 +3,7 @@ export function ContactList({ contacts, filter }) {
 
     return (
         <ul>
-            {filteredContacts.map(contact => <li key={contact.id}>{contact.name}</li>)}
+            {filteredContacts.map(contact => <li key={contact.id}>{contact.name}: {contact.number}</li>)}
         </ul>
     )
 }
