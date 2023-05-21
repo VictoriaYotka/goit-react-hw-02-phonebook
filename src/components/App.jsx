@@ -15,27 +15,24 @@ export class App extends Component {
 
   
   handleSubmit = (e) => {
-    const form = e.currentTarget;
+    const {form} = e.currentTarget;
+    const name = form.elements.name.value;
+    const number = form.elements.number.value
+
     e.preventDefault();
   
     const newContact = {
       id: nanoid(),
-      name: form.elements.name.value,
-      number: form.elements.number.value, 
+      name,
+      number, 
     };
 
     if(this.state.contacts.find(({name}) => name === newContact.name)) {
-      // console.log(this.state.contacts.find(({name}) => name === newContact.name))
-
       alert (`${newContact.name} is already in contacts`)
-
-      
-      // form.reset()
     } else {
       this.setState((prevState) => ({
         contacts: [...prevState.contacts, newContact]
-      }))
-      
+      })) 
     }
 
     form.reset()
@@ -58,15 +55,15 @@ export class App extends Component {
     <div className={css.container}>
   <h1 className={css.main_title}>Phonebook</h1>
   <ContactForm  
-  handleSubmit={this.handleSubmit}
+    handleSubmit={this.handleSubmit}
   />
 
   <h2 className={css.title}>Contacts</h2>
   <Filter  handleChange={this.handleChange}/>
   <ContactList 
-  contacts={this.state.contacts} 
-  filter={this.state.filter}
-  handleDeleteButton={this.handleDeleteButton}/>
+    contacts={this.state.contacts} 
+    filter={this.state.filter}
+    handleDeleteButton={this.handleDeleteButton}/>
 </div>
     )
   }
